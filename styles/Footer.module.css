@@ -1,0 +1,54 @@
+.footer{
+    background-color: #2C27B7;
+    width: 100vw;
+    height: 260px;
+}
+
+.footer a{
+    color: white;
+    font-size: 21px;
+}
+
+.footer_inner_left a:hover{
+    text-decoration: underline;
+}
+    
+/* fikk ikke til med first-child */
+.footer a:nth-child(2){
+    margin-top: 30px;
+}
+
+.footer_inner_left{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 210px;
+    top: 27px;
+    left: 24px;
+}
+
+.footer_inner_right{
+    position: absolute;
+    overflow: hidden;
+    
+    right: 24px;
+}
+
+.footer_inner_right_totopp{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 30px;
+    cursor: pointer;
+}
+
+.footer_inner_right a{
+    text-decoration: none;
+    position: relative;
+    top:-30px;
+}
+
+
+

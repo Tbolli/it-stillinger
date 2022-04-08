@@ -1,0 +1,83 @@
+.search_bar{
+    width: 342px;
+    height: 52px;
+    margin: auto;
+    margin-bottom: 30px;
+    background-color: #2C27B7;
+    border-radius: 13px;
+    transition: height 0.4s;
+    
+}
+
+
+.search_bar svg{
+    margin-right: 15.5px;
+}
+.Search_search_function{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Search_search_function svg{
+    margin-right: 13px;
+    margin-left: 15.5px;
+}
+
+.Search_search_function input{
+    color: white;
+    font-size: 22px;
+    font-family: "Segoe UI",sans-serif;
+    width: 100px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.Search_search_function input::placeholder{
+    color:white;
+}
+
+.Search_search_function input:focus{
+    outline:none;
+}
+
+.encaps_search{
+    height: 52px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.outerList{
+    display: none;
+}
+
+.outerList li:first-child{
+    border-top: 2px solid white;
+}
+
+.outerList ul{
+    width: 342px;
+    padding: 0;
+}
+
+.outerList svg{
+    margin: 0 9px 0 0;
+    
+}
+
+.outerList li{
+    width: 286px;
+    margin: auto;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    list-style-type: none;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 19px;
+    border-bottom: 2px solid white;
+}
+
