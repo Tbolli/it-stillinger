@@ -1,0 +1,33 @@
+.Card{
+    width: 342px;
+    margin: auto;
+}
+
+
+.Top_Level{
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+    margin-top: 30px;
+}
+
+.Top_Level h3{
+    padding: 0;
+    margin: 0;
+    width: 325px;
+}
+
+.Top_Level svg{
+    cursor: pointer;
+}
+
+.Main_Level{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 14px;
+}
+
+.Main_Level span{
+    padding-bottom: 1px;
+    max-width: 220px;
+}

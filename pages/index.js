@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Head from "next/head"
 import Search from "../components/Search"
+import Articlelist from '../components/Articlelist';
 
 import indexStyles from '../styles/Index.module.css'
 
 
 function index() {
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
 
   const apiTest = async()=>{
     const res = await fetch("/api/SearchTags")
@@ -29,9 +30,7 @@ function index() {
     </div>
     <h1 className={indexStyles.header}>IT Stillinger</h1>
     <Search/>
-    {data.map(val=>(
-      <h1>{val}</h1>
-    ))}
+    <Articlelist Articles={data}/>
 
 
     {
