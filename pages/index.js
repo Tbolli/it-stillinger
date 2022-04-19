@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Head from "next/head"
+
 import Search from "../components/Search"
 import Articlelist from '../components/Articlelist';
+import Viewmore from '../components/Viewmore';
 
 import indexStyles from '../styles/Index.module.css'
 
@@ -31,13 +33,7 @@ function index() {
     <h1 className={indexStyles.header}>IT Stillinger</h1>
     <Search/>
     <Articlelist Articles={data}/>
-
-
-    {
-      //<Search/>
-      //<Articlelist/>
-      //<Viewmore/>
-    }
+    <Viewmore Visninger={2} TotalTreff={274}/>
     </>
   )
 }

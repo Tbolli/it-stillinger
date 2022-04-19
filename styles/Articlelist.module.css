@@ -1,8 +1,12 @@
 .Card{
     width: 342px;
     margin: auto;
+    border-top:1.6px solid #747C82 ;
 }
 
+.ArticleList :first-child{
+    border: none;
+}
 
 .Top_Level{
     display: flex;
@@ -30,4 +34,8 @@
 .Main_Level span{
     padding-bottom: 1px;
     max-width: 220px;
+}
+
+.Bottom_Level{
+    margin-bottom: 30px;
 }

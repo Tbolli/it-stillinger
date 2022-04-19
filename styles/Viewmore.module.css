@@ -1,0 +1,17 @@
+.btn{
+    background-color: rgba(0,0,0,0);
+    border: 3px solid #2C27B7;
+    height: 52px;
+    border-radius: 25px;
+    font-size: 21px;
+    color: #2C27B7;
+    font-family:"Source Sans Pro",sans-serif ;
+}
+
+.seFlereDiv{
+    text-align: center;
+    width: 342px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
