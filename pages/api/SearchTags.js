@@ -1,7 +1,9 @@
 export default function handler(req,res) {
     res.status(200).json(
         [
-            {title: "Vil du bli våre nye utvilker?", 
+            {
+            id: "5eca7911-49df-4093-a4d4-0e05adad7602",
+            title: "Vil du bli våre nye utvilker?", 
             jobb:"Systemutvikler",
             arbeidsgiver:"ØSTHEIM MONTASJE AS", 
             adresse:"Eidsvåg i Åsene",
@@ -9,7 +11,9 @@ export default function handler(req,res) {
             publisert:"30.03.2022",
             bookmarked: true
             },
-            {title: "IT-driftsteknikker hos Molde VGS", 
+            {
+            id: "08a2c025-6c83-4453-a651-6a0e1ec7b089",    
+            title: "IT-driftsteknikker hos Molde VGS", 
             jobb:"IT-driftstenknikker",
             arbeidsgiver:"Moldefylkeskommune", 
             adresse:"Fræna, frænavegen 19",

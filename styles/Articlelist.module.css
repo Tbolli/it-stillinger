@@ -1,5 +1,6 @@
 .Card{
-    width: 342px;
+    width: 88%;
+    max-width: 342px;
     margin: auto;
     border-top:1.6px solid #747C82 ;
 }
@@ -11,29 +12,33 @@
 .Top_Level{
     display: flex;
     align-items: center;
-    margin-bottom: 14px;
+    justify-content: space-between;
+    margin-bottom: 10px;
     margin-top: 30px;
 }
 
-.Top_Level h3{
+.Top_Level h2{
+    font-size: 21px;
     padding: 0;
     margin: 0;
-    width: 325px;
+    width: 88%;
 }
 
 .Top_Level svg{
     cursor: pointer;
+    min-width:17.5px;
 }
 
 .Main_Level{
     display: flex;
     flex-direction: column;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
 }
 
 .Main_Level span{
     padding-bottom: 1px;
     max-width: 220px;
+    width: 70%;
 }
 
 .Bottom_Level{

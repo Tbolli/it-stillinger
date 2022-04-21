@@ -10,8 +10,14 @@
 
 .seFlereDiv{
     text-align: center;
-    width: 342px;
+    max-width: 342px;
+    width: 88%;
     margin: auto;
     display: flex;
     flex-direction: column;
+    margin-bottom: 55px;
+    margin-top: 50px;
+}
+.seFlereDiv span{
+    padding-bottom:8.5px ;
 }

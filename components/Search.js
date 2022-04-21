@@ -1,14 +1,14 @@
 import React from 'react'
 import searchStyles from '../styles/Search.module.css'
 
-function Search() {
+function Search({Omraade}) {
 
 let turn = true
 const expand = ()=>{
     if (turn == true){
         document.getElementById("search_bar").style.height = "300px"
         document.getElementById("outerList").style.display = "flex"
-        
+
         turn = false
         return; 
     }
@@ -44,28 +44,50 @@ const liClick = (e)=>{
     <div id="outerList" className={searchStyles.outerList}>
         <ul>
             <li id="Område_1">
-                <span>Område</span>
-                <svg onClick={liClick} xmlns="http://www.w3.org/2000/svg" width="22.4" height="14" viewBox="0 0 22.4 14">
-                    <path id="iconmonstr-arrow-63" d="M2.641,22.4,0,19.76,8.716,11.2,0,2.64,2.641,0,14,11.2Z" transform="translate(22.4) rotate(90)" fill="#fff"/>
-                </svg>
+                <div className={searchStyles.span_wrapper}>
+                    <span>Område</span>
+                    <svg onClick={liClick} xmlns="http://www.w3.org/2000/svg" width="22.4" height="14" viewBox="0 0 22.4 14">
+                        <path id="iconmonstr-arrow-63" d="M2.641,22.4,0,19.76,8.716,11.2,0,2.64,2.641,0,14,11.2Z" transform="translate(22.4) rotate(90)" fill="#fff"/>
+                    </svg>
+                </div>
+                <div className={searchStyles.omraader_trey}>
+                    {Omraade.map(obj =>( 
+                        <div className={searchStyles.option_span_wrapper}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+                            <g id="Path_2479" data-name="Path 2479" fill="none">
+                              <path d="M3,0h9a3,3,0,0,1,3,3v9a3,3,0,0,1-3,3H3a3,3,0,0,1-3-3V3A3,3,0,0,1,3,0Z" stroke="none"/>
+                              <path d="M 3 1.399999618530273 C 2.117759704589844 1.399999618530273 1.399999618530273 2.117759704589844 1.399999618530273 3 L 1.399999618530273 12 C 1.399999618530273 12.88224029541016 2.117759704589844 13.60000038146973 3 13.60000038146973 L 12 13.60000038146973 C 12.88224029541016 13.60000038146973 13.60000038146973 12.88224029541016 13.60000038146973 12 L 13.60000038146973 3 C 13.60000038146973 2.117759704589844 12.88224029541016 1.399999618530273 12 1.399999618530273 L 3 1.399999618530273 M 3 0 L 12 0 C 13.65684986114502 0 15 1.34315013885498 15 3 L 15 12 C 15 13.65684986114502 13.65684986114502 15 12 15 L 3 15 C 1.34315013885498 15 0 13.65684986114502 0 12 L 0 3 C 0 1.34315013885498 1.34315013885498 0 3 0 Z" stroke="none" fill="#fff"/>
+                            </g>
+                        </svg>
+                        <span>asd</span>
+                    </div>
+                     ) )}
+                    
+                    </div>
             </li>
             <li id="Yrke_2">
-                <span>Yrke</span>
-                <svg onClick={liClick} xmlns="http://www.w3.org/2000/svg" width="22.4" height="14" viewBox="0 0 22.4 14">
-                    <path id="iconmonstr-arrow-63" d="M2.641,22.4,0,19.76,8.716,11.2,0,2.64,2.641,0,14,11.2Z" transform="translate(22.4) rotate(90)" fill="#fff"/>
-                </svg>
+                <div className={searchStyles.span_wrapper}>
+                    <span>Yrke</span>
+                    <svg onClick={liClick} xmlns="http://www.w3.org/2000/svg" width="22.4" height="14" viewBox="0 0 22.4 14">
+                        <path id="iconmonstr-arrow-63" d="M2.641,22.4,0,19.76,8.716,11.2,0,2.64,2.641,0,14,11.2Z" transform="translate(22.4) rotate(90)" fill="#fff"/>
+                    </svg>
+                </div>
             </li>
             <li id="Annsettelsesform_3">
-                <span>Annsettelsesform</span>
-                <svg onClick={liClick} xmlns="http://www.w3.org/2000/svg" width="22.4" height="14" viewBox="0 0 22.4 14">
-                    <path id="iconmonstr-arrow-63" d="M2.641,22.4,0,19.76,8.716,11.2,0,2.64,2.641,0,14,11.2Z" transform="translate(22.4) rotate(90)" fill="#fff"/>
-                </svg>
+                <div className={searchStyles.span_wrapper}>
+                    <span>Annsettelsesform</span>
+                    <svg onClick={liClick} xmlns="http://www.w3.org/2000/svg" width="22.4" height="14" viewBox="0 0 22.4 14">
+                        <path id="iconmonstr-arrow-63" d="M2.641,22.4,0,19.76,8.716,11.2,0,2.64,2.641,0,14,11.2Z" transform="translate(22.4) rotate(90)" fill="#fff"/>
+                    </svg>
+                </div>
             </li>
             <li id="Sektor_4">
-                <span>Sektor</span>
-                <svg onClick={liClick} xmlns="http://www.w3.org/2000/svg" width="22.4" height="14" viewBox="0 0 22.4 14">
-                    <path id="iconmonstr-arrow-63" d="M2.641,22.4,0,19.76,8.716,11.2,0,2.64,2.641,0,14,11.2Z" transform="translate(22.4) rotate(90)" fill="#fff"/>
-                </svg>
+                <div className={searchStyles.span_wrapper}>
+                    <span>Sektor</span>
+                    <svg onClick={liClick} xmlns="http://www.w3.org/2000/svg" width="22.4" height="14" viewBox="0 0 22.4 14">
+                        <path id="iconmonstr-arrow-63" d="M2.641,22.4,0,19.76,8.716,11.2,0,2.64,2.641,0,14,11.2Z" transform="translate(22.4) rotate(90)" fill="#fff"/>
+                    </svg>
+                </div>
             </li>
         </ul>
 

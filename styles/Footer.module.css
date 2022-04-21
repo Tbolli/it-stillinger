@@ -4,7 +4,8 @@
     height: 260px;
 }
 
-.footer a{
+.footer a,
+.footer p{
     color: white;
     font-size: 21px;
 }
@@ -44,11 +45,10 @@
     cursor: pointer;
 }
 
-.footer_inner_right a{
+.footer_inner_right p{
     text-decoration: none;
     position: relative;
-    top:-30px;
+    top:-22px;
 }
-
 
 

@@ -1,14 +1,17 @@
 .search_bar{
-    width: 342px;
+    width: 88%;
+    max-width: 342px;
     height: 52px;
     margin: auto;
     margin-bottom: 30px;
     background-color: #2C27B7;
     border-radius: 13px;
     transition: height 0.4s;
-    
 }
 
+.search_bar span{
+    font-family: "Segoe UI";
+}
 
 .search_bar svg{
     margin-right: 15.5px;
@@ -71,9 +74,7 @@
     margin: auto;
     padding-top: 9px;
     padding-bottom: 9px;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
     color: white;
     list-style-type: none;
     font-family: "Segoe UI", sans-serif;
@@ -81,3 +82,17 @@
     border-bottom: 2px solid white;
 }
 
+.span_wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.omraader_trey{
+
+}
+.option_span_wrapper{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
