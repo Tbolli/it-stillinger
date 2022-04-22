@@ -89,10 +89,25 @@
 }
 
 .omraader_trey{
-
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 .option_span_wrapper{
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+
+.municipals{
+    display: none;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-left: 12px;
+}
+
+.checkbox{
+    height: 24px;
+    width: 24px;
+    accent-color:#2C27B7;
 }

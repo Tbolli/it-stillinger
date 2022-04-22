@@ -11,23 +11,11 @@ import ProfilePlaceholder from '../public/ProfilePlaceholder.png'
 import indexStyles from '../styles/Index.module.css'
 
 
-function index({asd}) {
-  const [data, setData] = useState([]);
+function index({locations, articles}) {
  
-
-  const apiTest = async()=>{
-    const res = await fetch("/api/SearchTags")
-    const data = await res.json()
-    
-    return setData(data)
-  }
-
-  useEffect(()=>{apiTest()},[])
-  
-  
   return (
     <>
-    {console.log(asd)}
+    {console.log(locations)}
     <Head>
       <title>IT_JOBB - Hjem</title>
       <meta charset="UTF-8"/>
@@ -48,8 +36,8 @@ function index({asd}) {
       
     </div>
     <h1 className={indexStyles.header}>IT Stillinger</h1>
-    <Search Omraade={[3,1,1]}/>
-    <Articlelist Articles={data}/>
+    <Search Omraade={locations}/>
+    <Articlelist Articles={articles}/>
     <Viewmore Visninger={2} TotalTreff={274}/>
   
   </>
@@ -58,9 +46,14 @@ function index({asd}) {
 
 
 export async function getServerSideProps() {
+  const hostname = "http://localhost:3000"
+
+
   const res = await fetch("https://arbeidsplassen.nav.no/stillinger/api/locations")
-  const asd = await res.json()
-  return { props: { asd } }
+  const locations = await res.json()
+  const resArticles = await fetch(`${hostname}/api/SearchTags`)
+  const articles = await resArticles.json()
+  return { props: { locations, articles} }
 }
 
 export default index
