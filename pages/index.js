@@ -11,11 +11,10 @@ import ProfilePlaceholder from '../public/ProfilePlaceholder.png'
 import indexStyles from '../styles/Index.module.css'
 
 
-function index({locations, articles}) {
+function index({locations, articles, rrarticles}) {
  
   return (
     <>
-    {console.log(locations)}
     <Head>
       <title>IT_JOBB - Hjem</title>
       <meta charset="UTF-8"/>
@@ -48,12 +47,14 @@ function index({locations, articles}) {
 export async function getServerSideProps() {
   const hostname = "http://localhost:3000"
 
+  const getArticles = await fetch("https://arbeidsplassen.nav.no/stillinger/api/search")
+  const rrarticles= await getArticles.json()
 
   const res = await fetch("https://arbeidsplassen.nav.no/stillinger/api/locations")
   const locations = await res.json()
   const resArticles = await fetch(`${hostname}/api/SearchTags`)
   const articles = await resArticles.json()
-  return { props: { locations, articles} }
+  return { props: { locations, articles, rrarticles} }
 }
 
 export default index

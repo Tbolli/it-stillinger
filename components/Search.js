@@ -1,51 +1,63 @@
 import React from 'react'
+import { useState } from 'react';
+
 import searchStyles from '../styles/Search.module.css'
 
 function Search({Omraade}) {
+    const [filter,setFilter] = useState([])
+    let turn = true
+    const expand = ()=>{
+        if (turn == true){
+            document.getElementById("search_bar").style.height = "auto"
+            document.getElementById("outerList").style.display = "flex"
 
-let turn = true
-const expand = ()=>{
-    if (turn == true){
-        document.getElementById("search_bar").style.height = "auto"
-        document.getElementById("outerList").style.display = "flex"
-
-        turn = false
-        return; 
-    }
-    document.getElementById("search_bar").style.height = "52px"
-    document.getElementById("outerList").style.display = "none"
-    turn = true
-}
-const displayerLayer_1 = (id)=>{
-    console.log(id)
-}
-
-const checkboxFill =(e)=>{
-    console.log(e.target)
-    try{
-        if(e.target.id.split("_")[1]==="id"){
-            e.target.style.fill === "white" ? e.target.style.fill= "#2C27B7" : e.target.style.fill = "white"
+            turn = false
+            return; 
         }
-    }catch{
-        return null
+        document.getElementById("search_bar").style.height = "52px"
+        document.getElementById("outerList").style.display = "none"
+        turn = true
+    }
+    const displayerLayer_1 = (id)=>{
+        console.log(id)
     }
 
-}
+    const checkboxFill =(e)=>{
+        console.log(e.target)
+        try{
+            if(e.target.id.split("_")[1]==="id"){
+                e.target.style.fill === "white" ? e.target.style.fill= "#2C27B7" : e.target.style.fill = "white"
+            }
+        }catch{
+            return null
+        }
 
-const liClick = (e)=>{
-    return (e.target.parentElement.id ==="" ? displayerLayer_1(e.target.parentElement.parentElement.id): displayerLayer_1(e.target.parentElement.id))
-}
+    }
 
+    const liClick = (e)=>{
+        return (e.target.parentElement.id ==="" ? displayerLayer_1(e.target.parentElement.parentElement.id): displayerLayer_1(e.target.parentElement.id))
+    }
 
-const upporOptionRemove = (obj)=>{    
-    if (!obj.municipals.length > 0) return null
-    return(
-        <div className={searchStyles.option_span_wrapper}>
-            <input className={searchStyles.checkbox} type="checkbox"/>
-            <span>{obj.key.toLowerCase()}</span>
-        </div>
-    )
-}
+    const layerOneClick =(e)=>{
+        let assert = filter
+        if(e.target.checked === false){
+            assert.splice(assert.indexOf(e.target.id),1)
+        }else{
+            assert.push(e.target.id)
+        }
+        setFilter(assert)
+        console.log(filter)
+    }
+
+    const upporOptionRemove = (obj)=>{    
+        if (!obj.municipals.length > 0) return null
+        return(
+            <div className={searchStyles.option_span_wrapper}>
+                <input onClick={layerOneClick} id={"inputID_"+ obj.key} className={searchStyles.checkbox} type="checkbox"/>
+                <span>{obj.key.toLowerCase()}</span>
+            </div>
+        )
+    }
 
   return (
     <div id="search_bar" className={searchStyles.search_bar}>

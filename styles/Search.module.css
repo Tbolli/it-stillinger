@@ -97,6 +97,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    margin-bottom: 3px;
 }
 
 .municipals{
@@ -107,7 +108,10 @@
 }
 
 .checkbox{
-    height: 24px;
-    width: 24px;
-    accent-color:#2C27B7;
+    height: 20px;
+    width: 20px;
+    accent-color:white;
+    margin-right: 10px;
 }
+
+
