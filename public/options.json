@@ -1,0 +1,5 @@
+{
+    "Yrke": ["Utvikler","Driftstøtte","IT-Konsulent","Brukerstøtte","UX/UI","IT-Sjef"],
+    "Annsettelsesform": ["Heltid","Deltid","Vikar","Sesong"],
+    "Sektor": ["Privat", "Offentlig"]
+}

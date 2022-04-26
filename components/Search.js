@@ -1,6 +1,9 @@
 import React from 'react'
 import { useState } from 'react';
+import Image from 'next/dist/client/image';
 
+import ArrowDown from '../public/ArrowDown.png'
+import jsonFile from '../public/options.json'
 import searchStyles from '../styles/Search.module.css'
 
 function Search({Omraade}) {
@@ -18,46 +21,54 @@ function Search({Omraade}) {
         document.getElementById("outerList").style.display = "none"
         turn = true
     }
+    let turnTable ={
+        "Omraade": false,
+        "Yrke": true,
+        "Annsettelsesform": true,
+        "Sektor": true,
+    }
+
     const displayerLayer_1 = (id)=>{
-        console.log(id)
+        turnTable.id = !turnTable.id
+        turnTable.id ? document.getElementById(id+"_trey").style.display ="flex" : document.getElementById(id+"_trey").style.display ="none"
+        
     }
-
-    const checkboxFill =(e)=>{
-        console.log(e.target)
-        try{
-            if(e.target.id.split("_")[1]==="id"){
-                e.target.style.fill === "white" ? e.target.style.fill= "#2C27B7" : e.target.style.fill = "white"
-            }
-        }catch{
-            return null
-        }
-
-    }
-
     const liClick = (e)=>{
-        return (e.target.parentElement.id ==="" ? displayerLayer_1(e.target.parentElement.parentElement.id): displayerLayer_1(e.target.parentElement.id))
+        displayerLayer_1(e.target.id.split("_")[0])
     }
 
     const layerOneClick =(e)=>{
+        let subject = e.target.id.split("_")[1]
         let assert = filter
         if(e.target.checked === false){
-            assert.splice(assert.indexOf(e.target.id),1)
+            assert.splice(assert.indexOf(subject),1)
+            if(e.target.id.split("_")[0]=="inputID"){
+                console.log(e.target.id)
+                document.getElementById("inputIdUnder_"+e.target.value).style.display ="none"
+            }
         }else{
-            assert.push(e.target.id)
+            assert.push(subject)
+            if(e.target.id.split("_")[0]=="inputID"){
+                document.getElementById("inputIdUnder_"+e.target.value).style.display ="flex"
+            }
         }
         setFilter(assert)
         console.log(filter)
+        
+        
     }
 
     const upporOptionRemove = (obj)=>{    
         if (!obj.municipals.length > 0) return null
         return(
             <div className={searchStyles.option_span_wrapper}>
-                <input onClick={layerOneClick} id={"inputID_"+ obj.key} className={searchStyles.checkbox} type="checkbox"/>
+                <input onClick={layerOneClick} value={obj.key}id={"inputID_"+ obj.key} className={searchStyles.checkbox} type="checkbox"/>
                 <span>{obj.key.toLowerCase()}</span>
             </div>
         )
     }
+
+
 
   return (
     <div id="search_bar" className={searchStyles.search_bar}>
@@ -70,38 +81,33 @@ function Search({Omraade}) {
             <input type="text" placeholder='Søk'></input>
         </div>
         
-        <svg onClick={expand} xmlns="http://www.w3.org/2000/svg" width="26.578" height="16.611" viewBox="0 0 26.578 16.611">
-            <path id="iconmonstr-arrow-63" d="M3.134,26.578,0,23.445,10.342,13.285,0,3.133,3.134,0,16.611,13.285Z" transform="translate(26.578) rotate(90)" fill="#fff"/>
-        </svg>
+        <p onClick={expand}>filter</p>
     </div>
 
     <div id="outerList" className={searchStyles.outerList}>
         <ul>
-            <li id="Område_1">
+            <li id="Omraade_1">
                 <div className={searchStyles.span_wrapper}>
                     <span>Område</span>
-                    <svg onClick={liClick} xmlns="http://www.w3.org/2000/svg" width="22.4" height="14" viewBox="0 0 22.4 14">
-                        <path id="iconmonstr-arrow-63" d="M2.641,22.4,0,19.76,8.716,11.2,0,2.64,2.641,0,14,11.2Z" transform="translate(22.4) rotate(90)" fill="#fff"/>
-                    </svg>
+                    <Image id="Omraade_arrow" onClick={liClick} className={searchStyles.Image}
+                      src={ArrowDown}
+                      width={23}
+                      height={14}
+                      alt="Pil"
+                    />
                 </div>
-                <div className={searchStyles.omraader_trey}>
+                <div id="Omraade_trey" className={searchStyles.omraader_trey}>
                     {Omraade.map(obj =>( 
                         <div className="upper_option_wrapper">
                             {upporOptionRemove(obj)}
-                            <div className={searchStyles.municipals}>
+                            <div id={"inputIdUnder_"+obj.key} className={searchStyles.municipals}>
                                 {obj.municipals.map(municipal => (
                                     <div className={searchStyles.option_span_wrapper}>
-                                        <svg onClick={checkboxFill} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15">
-                                        <g id={obj.key+"_municipals_id"}  data-name="Path 2479" fill="#2C27B7">
-                                          <path d="M3,0h9a3,3,0,0,1,3,3v9a3,3,0,0,1-3,3H3a3,3,0,0,1-3-3V3A3,3,0,0,1,3,0Z" stroke="none"/>
-                                          <path d="M 3 1.399999618530273 C 2.117759704589844 1.399999618530273 1.399999618530273 2.117759704589844 1.399999618530273 3 L 1.399999618530273 12 C 1.399999618530273 12.88224029541016 2.117759704589844 13.60000038146973 3 13.60000038146973 L 12 13.60000038146973 C 12.88224029541016 13.60000038146973 13.60000038146973 12.88224029541016 13.60000038146973 12 L 13.60000038146973 3 C 13.60000038146973 2.117759704589844 12.88224029541016 1.399999618530273 12 1.399999618530273 L 3 1.399999618530273 M 3 0 L 12 0 C 13.65684986114502 0 15 1.34315013885498 15 3 L 15 12 C 15 13.65684986114502 13.65684986114502 15 12 15 L 3 15 C 1.34315013885498 15 0 13.65684986114502 0 12 L 0 3 C 0 1.34315013885498 1.34315013885498 0 3 0 Z" stroke="none" fill="#fff"/>
-                                        </g>
-                                        </svg>
+                                        <input onClick={layerOneClick} id={"inputIDSecond_"+ municipal.key} className={searchStyles.checkbox} type="checkbox"/>
                                         <span>{municipal.key.split(".")[1].toLowerCase()}</span>
                                     </div>
                                 ))}
                             </div>
-                        
                         </div>
                      ) )}
                 </div>
@@ -109,25 +115,64 @@ function Search({Omraade}) {
             <li id="Yrke_2">
                 <div className={searchStyles.span_wrapper}>
                     <span>Yrke</span>
-                    <svg onClick={liClick} xmlns="http://www.w3.org/2000/svg" width="22.4" height="14" viewBox="0 0 22.4 14">
-                        <path id="iconmonstr-arrow-63" d="M2.641,22.4,0,19.76,8.716,11.2,0,2.64,2.641,0,14,11.2Z" transform="translate(22.4) rotate(90)" fill="#fff"/>
-                    </svg>
+                    <Image id="Yrke_arrow" onClick={liClick} className={searchStyles.Image}
+                      src={ArrowDown}
+                      width={23}
+                      height={14}
+                      alt="Pil"
+                    />
+                </div>
+                <div id="Yrke_trey" className={searchStyles.omraader_trey}>
+                    <div className="upper_option_wrapper">
+                        {jsonFile.Yrke.map(yrke => (
+                            <div className={searchStyles.option_span_wrapper}>
+                                <input onClick={layerOneClick} id={"inputIDSecondYrke_"+ yrke} className={searchStyles.checkbox} type="checkbox"/>
+                                <span>{yrke}</span>
+                            </div>
+                        ))}          
+                    </div>
                 </div>
             </li>
             <li id="Annsettelsesform_3">
                 <div className={searchStyles.span_wrapper}>
                     <span>Annsettelsesform</span>
-                    <svg onClick={liClick} xmlns="http://www.w3.org/2000/svg" width="22.4" height="14" viewBox="0 0 22.4 14">
-                        <path id="iconmonstr-arrow-63" d="M2.641,22.4,0,19.76,8.716,11.2,0,2.64,2.641,0,14,11.2Z" transform="translate(22.4) rotate(90)" fill="#fff"/>
-                    </svg>
+                    <Image id="Annsettelsesform_arrow" onClick={liClick} className={searchStyles.Image}
+                      src={ArrowDown}
+                      width={23}
+                      height={14}
+                      alt="Pil"
+                    />
+                </div>
+                <div id="Annsettelsesform_trey" className={searchStyles.omraader_trey}>
+                    <div className="upper_option_wrapper">
+                        {jsonFile.Annsettelsesform.map(form => (
+                            <div className={searchStyles.option_span_wrapper}>
+                                <input onClick={layerOneClick} id={"inputIDSecondForm_"+ form} className={searchStyles.checkbox} type="checkbox"/>
+                                <span>{form}</span>
+                            </div>
+                        ))}          
+                    </div>
                 </div>
             </li>
             <li id="Sektor_4">
                 <div className={searchStyles.span_wrapper}>
                     <span>Sektor</span>
-                    <svg onClick={liClick} xmlns="http://www.w3.org/2000/svg" width="22.4" height="14" viewBox="0 0 22.4 14">
-                        <path id="iconmonstr-arrow-63" d="M2.641,22.4,0,19.76,8.716,11.2,0,2.64,2.641,0,14,11.2Z" transform="translate(22.4) rotate(90)" fill="#fff"/>
-                    </svg>
+                    <Image id="Sektor_arrow" onClick={liClick} className={searchStyles.Image}
+                      src={ArrowDown}
+                      width={23}
+                      height={14}
+                      alt="Pil"
+                    />
+                </div>
+                <div id="Sektor_trey" className={searchStyles.omraader_trey}>
+                    <div className="upper_option_wrapper">
+                        {jsonFile.Sektor.map(Sektor => (
+                            <div className={searchStyles.option_span_wrapper}>
+                                <input onClick={layerOneClick} id={"inputIDSecondSektor_"+ Sektor} className={searchStyles.checkbox} type="checkbox"/>
+                                <span>{Sektor}</span>
+                            </div>
+                        ))}          
+                    </div>
                 </div>
             </li>
         </ul>

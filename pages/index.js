@@ -11,8 +11,33 @@ import ProfilePlaceholder from '../public/ProfilePlaceholder.png'
 import indexStyles from '../styles/Index.module.css'
 
 
-function index({locations, articles, rrarticles}) {
- 
+const size = 50
+async function fetchArticlesShallow(from, size){
+  const responseObj = await fetch(`http://localhost:3000/api/Handler?from=${from}&size=${size}`)
+  const jsonData = await responseObj.json()
+  return jsonData
+}
+
+function index({locations, rrarticles}) {
+  
+  const [from, setFrom] = useState(0)
+  const [totalArticles, setTotalArticles] = useState(rrarticles)
+  const [force, setForce] = useState(false)
+  
+  
+
+
+  async function ViewMoreClick(){
+    const curr = await fetchArticlesShallow(from+size,size)
+    const currUse = curr.hits.hits
+    let resList= totalArticles
+    resList.hits.hits =resList.hits.hits.concat(currUse)
+    setTotalArticles(resList)
+    setFrom(from + size)
+    setForce(!force)
+  }
+
+
   return (
     <>
     <Head>
@@ -36,8 +61,8 @@ function index({locations, articles, rrarticles}) {
     </div>
     <h1 className={indexStyles.header}>IT Stillinger</h1>
     <Search Omraade={locations}/>
-    <Articlelist Articles={articles}/>
-    <Viewmore Visninger={2} TotalTreff={274}/>
+    <Articlelist Articles={totalArticles.hits.hits}/>
+    <Viewmore OC={ViewMoreClick} Size={size}Articles={totalArticles.hits.hits} Visninger={from+size} TotalTreff={totalArticles.hits.total.value}/>
   
   </>
   )
@@ -45,18 +70,14 @@ function index({locations, articles, rrarticles}) {
 
 
 export async function getServerSideProps() {
-  const hostname = "http://localhost:3000"
-
-  const getArticles = await fetch("https://arbeidsplassen.nav.no/stillinger/api/search")
-  const rrarticles= await getArticles.json()
+  const rrarticles = await fetchArticlesShallow(0, size)
 
   const res = await fetch("https://arbeidsplassen.nav.no/stillinger/api/locations")
   const locations = await res.json()
-  const resArticles = await fetch(`${hostname}/api/SearchTags`)
-  const articles = await resArticles.json()
-  return { props: { locations, articles, rrarticles} }
+  return { props: { locations, rrarticles} }
 }
 
 export default index
+
 
 

@@ -1,23 +1,19 @@
-import Cors from 'cors'
+import NextCors from 'nextjs-cors';
 
-const cors = Cors({
-    methods:['GET','HEAD'],
-})
-
-function runMiddleware(req, res, fn) {
-    return new Promise((resolve, reject) => {
-      fn(req, res, (result) => {
-        if (result instanceof Error) {
-          return reject(result)
-        }
-  
-        return resolve(result)
-      })
-    })
-  }
+export default async function handler(req, res) {
 
 
-export default async function handler(req,res) {
-    await runMiddleware(req,res, cors)
-    fetch("https://arbeidsplassen.nav.no/stillinger/api/locations")
-}
+    await NextCors(req, res, {
+       methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+       origin: '*',
+       optionsSuccessStatus: 200, 
+    });
+    let rrRes=null
+    try{
+        const rr = await fetch(`https://arbeidsplassen.nav.no/stillinger/api/search?from=${req.query.from}&size=${req.query.size}`)
+        rrRes = await rr.json()
+    }catch (err){
+        console.log(err)
+    }
+    res.json(rrRes)
+ }
